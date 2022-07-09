@@ -1,16 +1,16 @@
 const express = require("express")
 const server = express()
 
-// pegar o banco de dados
+// get DB
 const db = require("./database/db.js")
 
-// configura pasta public
+// config public path
 server.use(express.static("public"))
 
-// habilitar o uso do req.body na nossa aplicação
+// enable req.body 
 server.use(express.urlencoded({ extended: true}))
 
-//utilizando template engine
+//template engine
 const nunjucks = require("nunjucks")
 nunjucks.configure("src/views", {
     express: server,
@@ -19,26 +19,21 @@ nunjucks.configure("src/views", {
 
 
 
-//configar caminhos da aplicação
-//página inicial
-//req: requisição
-//res: resposta
+//config routes
+//home
 server.get("/", (req, res) => {
     return res.render("index.html", { title: "Um título"})
 })
 
 server.get("/create-point", (req, res) => {
 
-    //req.query: Query Strings da nossa url
-    //console.log(req.query)
-
+    //req.query: Query Strings 
     return res.render("create-point.html")
 })
 server.post("/savepoint", (req, res) => {
     
-    // req.body: o corpo do nosso formulario
-    //console.log(req.body)
-    // inserir dados no banco de dados
+    // req.body: Body
+    // insert data
     const query = `
         INSERT INTO places (
             image,
@@ -80,12 +75,12 @@ server.get("/search", (req, res) => {
     const search = req.query.search
     
     if(search == "") {
-        //pesquisa vazia
+        //empty search
         return res.render("search-results.html", { total: 0}) 
     }
 
 
-    //pegar os dados do banco de dados
+    //get data
     db.all(`SELECT * FROM places WHERE city LIKE '%${search}%'`, function(err, rows) {
        if(err) {
            return console.log(err)
@@ -93,10 +88,10 @@ server.get("/search", (req, res) => {
        const total = rows.length
 
        console.log(rows)
-       // mostrar a página html com os dados do banco de dados
+       // show data 
        return res.render("search-results.html", { places: rows, total: total})
     })
 }) 
 
-//ligar o servidor
+//start server
 server.listen(3001)

@@ -1,15 +1,15 @@
 # Next Level Week - Ecoleta
 
-Projeto de um sistema de marketplace desenvolvido com a finalidade de cadastrar e localizar pontos de coleta de resíduos especiais.
+Marketplace system developed with the purpose of registering and locating special waste collection points.
 
-## Pré-visualização
+## Preview
 
 ![](https://i.imgur.com/gMaeJ93.png)
 ![](https://i.imgur.com/BEwfN3x.png)
 ![](https://i.imgur.com/YqJ125h.png)
 ![](https://i.imgur.com/hU4z9E4.png)
 
-## Tecnologias
+## Technologies
  
 - Html
 - Css
@@ -17,12 +17,12 @@ Projeto de um sistema de marketplace desenvolvido com a finalidade de cadastrar 
 - NodeJs
 - SQlite
 
-### Dependências
+### Dependencies
 - Express
 - Nodemon
 - Nunjucks
 
-## Instalação
+## How to install
 
 ```bash
 npm install
